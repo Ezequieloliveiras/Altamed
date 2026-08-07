@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
+import { Manrope } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { WhatsAppFloatingButton } from "@/components/WhatsAppFloatingButton";
+
+const manrope = Manrope({
+  subsets: ["latin"],
+  variable: "--font-manrope",
+  display: "swap",
+});
 export const metadata: Metadata = {
   title: { default: "Altamed | Soluções Cirúrgicas", template: "%s | Altamed" },
   description: "Equipamentos, instrumentais e materiais para a área cirúrgica.",
@@ -12,10 +20,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
-      <body>
+      <body className={manrope.variable}>
         <Header />
         <main>{children}</main>
         <Footer />
+        <WhatsAppFloatingButton />
       </body>
     </html>
   );

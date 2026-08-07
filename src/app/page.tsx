@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ProductGrid } from "@/components/ProductGrid";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { InstitutionalHighlights } from "@/components/InstitutionalHighlights";
+import { Reveal } from "@/components/Reveal";
 import { getCategories, getFeaturedProducts } from "@/sanity/fetch";
 
 export const revalidate = 60;
@@ -12,42 +14,54 @@ export default async function Home() {
   return (
     <>
       <section className="hero">
-        <div className="container">
+        <div className="container hero-content">
           <p className="eyebrow">Precisão que cuida</p>
-          <h1>Equipamentos e soluções para a área cirúrgica.</h1>
+          <h1>
+            Tecnologia e precisão
+            <br />
+            para o ambiente
+            <br />
+            cirúrgico
+          </h1>
           <p>
-            Produtos selecionados para apoiar profissionais de saúde com
-            segurança, qualidade e confiança.
+            Soluções e equipamentos selecionados para oferecer qualidade,
+            segurança e eficiência aos profissionais da saúde.
           </p>
-          <Link className="button" href="/produtos">
-            Ver produtos
-          </Link>
+          <div className="hero-actions">
+            <Link className="button" href="/produtos">
+              Conheça nossos produtos
+            </Link>
+            <Link className="button button-outline" href="/contato">
+              Fale conosco
+            </Link>
+          </div>
         </div>
       </section>
       <section className="section container">
-        <div className="section-heading">
+        <Reveal className="section-heading">
           <p className="eyebrow">Encontre por área</p>
           <h2>Categorias</h2>
-        </div>
+        </Reveal>
         <div className="categories">
           {categories?.length ? (
-            categories.map((category) => (
-              <Link
-                key={category._id}
-                href={`/produtos?categoria=${category.slug}`}
-              >
-                <strong>{category.name}</strong>
-                <span>{category.description || "Conheça os produtos"}</span>
-              </Link>
+            categories.map((category, index) => (
+              <Reveal key={category._id} delay={index * 80}>
+                <Link href={`/produtos?categoria=${category.slug}`}>
+                  <strong>{category.name}</strong>
+                  <span>{category.description || "Conheça os produtos"}</span>
+                  <em>Ver produtos →</em>
+                </Link>
+              </Reveal>
             ))
           ) : (
             <p className="empty">As categorias estarão disponíveis em breve.</p>
           )}
         </div>
       </section>
+      <InstitutionalHighlights />
       <section className="section surface">
         <div className="container">
-          <div className="section-heading row">
+          <Reveal className="section-heading row">
             <div>
               <p className="eyebrow">Seleção Altamed</p>
               <h2>Produtos em destaque</h2>
@@ -55,7 +69,7 @@ export default async function Home() {
             <Link className="text-link" href="/produtos">
               Ver catálogo completo →
             </Link>
-          </div>
+          </Reveal>
           {featured?.length ? (
             <ProductGrid products={featured} />
           ) : (
@@ -66,27 +80,29 @@ export default async function Home() {
         </div>
       </section>
       <section className="section container institutional">
-        <div>
+        <Reveal>
           <p className="eyebrow">Sobre a Altamed</p>
           <h2>Parceria para uma rotina cirúrgica mais eficiente.</h2>
-        </div>
-        <p>
-          Trabalhamos com materiais e equipamentos que atendem às necessidades
-          de hospitais, clínicas e profissionais, oferecendo atendimento próximo
-          e soluções confiáveis.
-        </p>
-        <Link className="text-link" href="/sobre">
-          Conheça nossa empresa →
-        </Link>
+        </Reveal>
+        <Reveal delay={100}>
+          <p>
+            Trabalhamos com materiais e equipamentos que atendem às necessidades
+            de hospitais, clínicas e profissionais, oferecendo atendimento
+            próximo e soluções confiáveis.
+          </p>
+          <Link className="text-link" href="/sobre">
+            Conheça nossa empresa <span>→</span>
+          </Link>
+        </Reveal>
       </section>
       <section className="contact-call">
-        <div className="container">
+        <Reveal className="container cta-inner">
           <div>
             <h2>Precisa de orientação para escolher um produto?</h2>
             <p>Nossa equipe está pronta para ajudar.</p>
           </div>
           <WhatsAppButton label="Falar pelo WhatsApp" />
-        </div>
+        </Reveal>
       </section>
     </>
   );
