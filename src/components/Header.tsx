@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -24,11 +25,17 @@ export function Header() {
 
   return (
     <header className={`header ${scrolled ? "header-scrolled" : ""}`}>
-      <div className="container nav">
+      <div className="container nav header-inner">
         <Link className="brand" href="/">
-          ALTAMED<span>.</span>
+          <Image
+            src="/images/logoaltamed.svg"
+            alt="Altamed — Produtos cirúrgicos e hospitalares"
+            width={205}
+            height={49}
+            priority
+          />
         </Link>
-        <nav aria-label="Navegação principal">
+        <nav className="navigation" aria-label="Navegação principal">
           {navItems.map((item) => {
             const active =
               item.href === "/"
@@ -46,6 +53,9 @@ export function Header() {
             );
           })}
         </nav>
+        <Link className="nav-cta header-cta" href="/contato">
+          Fale conosco
+        </Link>
       </div>
     </header>
   );

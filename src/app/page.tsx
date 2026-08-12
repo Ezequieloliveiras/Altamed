@@ -37,10 +37,14 @@ export default async function Home() {
           </div>
         </div>
       </section>
-      <section className="section container">
+      <section className="section container categories-section">
         <Reveal className="section-heading">
           <p className="eyebrow">Encontre por área</p>
-          <h2>Categorias</h2>
+          <h2>Soluções por especialidade</h2>
+          <p>
+            Explore nosso portfólio de produtos e soluções para diferentes
+            necessidades do ambiente cirúrgico.
+          </p>
         </Reveal>
         <div className="categories">
           {categories?.length ? (
@@ -49,7 +53,7 @@ export default async function Home() {
                 <Link href={`/produtos?categoria=${category.slug}`}>
                   <strong>{category.name}</strong>
                   <span>{category.description || "Conheça os produtos"}</span>
-                  <em>Ver produtos →</em>
+                  <em>Explorar produtos <span>→</span></em>
                 </Link>
               </Reveal>
             ))
@@ -58,16 +62,15 @@ export default async function Home() {
           )}
         </div>
       </section>
-      <InstitutionalHighlights />
-      <section className="section surface">
+      <section className="section featured-section">
         <div className="container">
-          <Reveal className="section-heading row">
+          <Reveal className="featured-heading">
             <div>
               <p className="eyebrow">Seleção Altamed</p>
               <h2>Produtos em destaque</h2>
             </div>
-            <Link className="text-link" href="/produtos">
-              Ver catálogo completo →
+            <Link className="text-link featured-catalog-link" href="/produtos">
+              Ver catálogo completo <span>→</span>
             </Link>
           </Reveal>
           {featured?.length ? (
@@ -79,7 +82,8 @@ export default async function Home() {
           )}
         </div>
       </section>
-      <section className="section container institutional">
+      <InstitutionalHighlights />
+      <section className="section container institutional about-section">
         <Reveal>
           <p className="eyebrow">Sobre a Altamed</p>
           <h2>Parceria para uma rotina cirúrgica mais eficiente.</h2>
@@ -96,12 +100,15 @@ export default async function Home() {
         </Reveal>
       </section>
       <section className="contact-call">
-        <Reveal className="container cta-inner">
+        <Reveal className="container cta-inner cta-card">
           <div>
             <h2>Precisa de orientação para escolher um produto?</h2>
-            <p>Nossa equipe está pronta para ajudar.</p>
+            <p>
+              Nossa equipe está pronta para entender sua necessidade e indicar
+              a solução mais adequada.
+            </p>
           </div>
-          <WhatsAppButton label="Falar pelo WhatsApp" />
+          <WhatsAppButton label="Falar com um especialista" />
         </Reveal>
       </section>
     </>
