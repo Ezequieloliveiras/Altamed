@@ -1,9 +1,18 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
+const navItems = [
+  { href: "/", label: "Início" },
+  { href: "/produtos", label: "Produtos" },
+  { href: "/sobre", label: "Sobre" },
+  { href: "/contato", label: "Contato" },
+];
+
 export function Header() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -20,10 +29,22 @@ export function Header() {
           ALTAMED<span>.</span>
         </Link>
         <nav aria-label="Navegação principal">
-          <Link href="/">Início</Link>
-          <Link href="/produtos">Produtos</Link>
-          <Link href="/sobre">Sobre</Link>
-          <Link href="/contato">Contato</Link>
+          {navItems.map((item) => {
+            const active =
+              item.href === "/"
+                ? pathname === item.href
+                : pathname.startsWith(item.href);
+
+            return (
+              <Link
+                aria-current={active ? "page" : undefined}
+                href={item.href}
+                key={item.href}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
       </div>
     </header>
