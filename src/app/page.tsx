@@ -53,7 +53,6 @@ export default async function Home() {
                 <Link href={`/produtos?categoria=${category.slug}`}>
                   <strong>{category.name}</strong>
                   <span>{category.description || "Conheça os produtos"}</span>
-                  <em>Explorar produtos <span>→</span></em>
                 </Link>
               </Reveal>
             ))
