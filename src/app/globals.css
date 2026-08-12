@@ -1415,8 +1415,14 @@ dd {
   width: min(1200px, calc(100% - 48px));
 }
 .header {
-  border-bottom-color: rgba(6, 57, 102, 0.09);
-  background: rgba(255, 255, 255, 0.96);
+  border-bottom-color: rgba(7, 79, 118, 0.06);
+  background:
+    radial-gradient(ellipse 30% 150% at 6% 10%, rgba(219, 242, 238, 0.18) 0%, transparent 72%),
+    radial-gradient(ellipse 28% 150% at 38% 100%, rgba(229, 246, 243, 0.16) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 150% at 73% 0%, rgba(222, 244, 241, 0.17) 0%, transparent 72%),
+    radial-gradient(ellipse 27% 150% at 101% 90%, rgba(217, 241, 238, 0.18) 0%, transparent 72%),
+    linear-gradient(105deg, #fbfdfd 0%, #ffffff 42%, #fcfefe 100%);
+  box-shadow: 0 1px 12px rgba(4, 52, 82, 0.035);
 }
 .nav {
   min-height: 88px;
@@ -1780,21 +1786,22 @@ dd {
   justify-content: center;
   min-height: 42px;
   justify-self: end;
-  border: 1px solid rgba(0, 141, 152, 0.45);
-  border-radius: 5px;
+  border: 1px solid rgba(0, 153, 170, 0.55);
+  border-radius: 8px;
   color: var(--primary);
   padding: 11px 20px;
   font-size: 18px;
   font-weight: 600;
   line-height: 1.2;
   white-space: nowrap;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
 }
 .header-cta:hover,
 .header-cta:focus-visible {
-  border-color: var(--primary);
-  background: var(--primary);
+  border-color: #009eaa;
+  background: #009eaa;
   color: #fff;
+  transform: translateY(-1px);
 }
 @media (min-width: 761px) {
   .header-inner .navigation {
@@ -2212,4 +2219,190 @@ dd {
   .footer {
     padding-top: 64px;
   }
+}
+
+/* Sobre a Altamed — leitura em uma coluna no celular */
+@media (max-width: 760px) {
+  .institutional {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  .institutional > .reveal:last-child {
+    border-top: 1px solid var(--border);
+    border-left: 0;
+    padding: 28px 0 0;
+  }
+}
+
+/* Barra de descoberta do catálogo */
+.catalogue-controls {
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(250px, 0.9fr);
+  gap: 18px;
+  margin: 30px 0 16px;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+}
+.catalogue-field {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  min-width: 0;
+  color: var(--primary-dark);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+.search-input-wrap {
+  position: relative;
+  display: block;
+}
+.search-input-wrap svg {
+  position: absolute;
+  top: 50%;
+  left: 18px;
+  width: 19px;
+  height: 19px;
+  color: #71808c;
+  fill: none;
+  pointer-events: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 1.8;
+  transform: translateY(-50%);
+}
+.catalogue-controls input,
+.category-trigger {
+  width: 100%;
+  min-height: 54px;
+  margin: 0;
+  border: 1px solid #dce5ec;
+  border-radius: 10px;
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.2;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.catalogue-controls input {
+  padding: 0 18px 0 50px;
+}
+.catalogue-controls input::placeholder {
+  color: #8a98a4;
+  opacity: 1;
+}
+.catalogue-controls input:focus,
+.category-trigger:focus-visible {
+  outline: 0;
+  border-color: #00a0ad;
+  box-shadow: 0 0 0 3px rgba(0, 160, 173, 0.08);
+}
+.category-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 17px;
+  text-align: left;
+  cursor: pointer;
+}
+.category-trigger svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.8;
+  transition: transform 0.2s ease;
+}
+.category-trigger[aria-expanded="true"] svg {
+  transform: rotate(180deg);
+}
+.category-options {
+  position: absolute;
+  z-index: 5;
+  top: calc(100% + 8px);
+  right: 0;
+  left: 0;
+  overflow: hidden;
+  border: 1px solid #dce5ec;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 14px 30px rgba(6, 57, 102, 0.1);
+  padding: 6px;
+}
+.category-options button {
+  display: block;
+  width: 100%;
+  min-height: 42px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text);
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 15px;
+  text-align: left;
+  cursor: pointer;
+}
+.category-options button:hover,
+.category-options button:focus-visible {
+  outline: 0;
+  background: #edf7f8;
+}
+.category-options button.selected {
+  color: var(--primary);
+  font-weight: 700;
+}
+.catalogue-results {
+  display: flex;
+  min-height: 29px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 0 0 34px;
+  color: var(--text-light);
+  font-size: 15px;
+}
+.catalogue-results p {
+  margin: 0;
+}
+.clear-filters {
+  border: 0;
+  background: transparent;
+  color: var(--primary);
+  padding: 3px 0;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.clear-filters:hover,
+.clear-filters:focus-visible {
+  outline: 0;
+  color: var(--primary-dark);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+@media (max-width: 760px) {
+  .catalogue-controls {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 24px;
+  }
+  .catalogue-results {
+    margin-bottom: 28px;
+  }
+}
+
+/* Cards de produto clicáveis */
+.card-link {
+  display: flex;
+  height: 100%;
+  color: inherit;
+  flex-direction: column;
 }

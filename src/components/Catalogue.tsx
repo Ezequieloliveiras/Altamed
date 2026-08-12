@@ -23,6 +23,11 @@ export function Catalogue({
       }),
     [products, term, category],
   );
+  const hasFilters = Boolean(term || category);
+  const clearFilters = () => {
+    setTerm("");
+    setCategory("");
+  };
   return (
     <>
       <div className="catalogue-controls">
@@ -32,6 +37,18 @@ export function Catalogue({
           value={category}
           onChange={setCategory}
         />
+      </div>
+      <div className="catalogue-results" aria-live="polite">
+        <p>
+          {term
+            ? `Resultados para “${term}”`
+            : `${filtered.length} ${filtered.length === 1 ? "produto encontrado" : "produtos encontrados"}`}
+        </p>
+        {hasFilters && (
+          <button className="clear-filters" onClick={clearFilters} type="button">
+            Limpar filtros
+          </button>
+        )}
       </div>
       {filtered.length ? (
         <ProductGrid products={filtered} />
