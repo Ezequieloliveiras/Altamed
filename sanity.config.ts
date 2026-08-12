@@ -21,6 +21,9 @@ export default defineConfig({
           .items([
             S.documentTypeListItem("product").title("Produtos"),
             S.documentTypeListItem("category").title("Categorias"),
+            S.documentTypeListItem("technicalCatalog").title(
+              "Catálogos Técnicos",
+            ),
           ]),
     }),
     visionTool(),

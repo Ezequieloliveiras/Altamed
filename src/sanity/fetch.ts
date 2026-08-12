@@ -1,11 +1,12 @@
 import { client, isSanityConfigured } from "./client";
 import {
   activeProductsQuery,
+  activeTechnicalCatalogsQuery,
   categoriesQuery,
   featuredProductsQuery,
   productBySlugQuery,
 } from "./queries";
-import type { Category, Product } from "./types";
+import type { Category, Product, TechnicalCatalog } from "./types";
 async function safelyFetch<T>(
   query: string,
   params: Record<string, string> = {},
@@ -23,3 +24,5 @@ export const getFeaturedProducts = () =>
 export const getCategories = () => safelyFetch<Category[]>(categoriesQuery);
 export const getProductBySlug = (slug: string) =>
   safelyFetch<Product>(productBySlugQuery, { slug });
+export const getTechnicalCatalogs = () =>
+  safelyFetch<TechnicalCatalog[]>(activeTechnicalCatalogsQuery);

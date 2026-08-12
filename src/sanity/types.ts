@@ -12,6 +12,17 @@ export interface SanityImage {
   asset?: { _ref?: string; url?: string };
   alt?: string;
 }
+export interface TechnicalCatalog {
+  _id: string;
+  title: string;
+  slug: string;
+  specialty: string;
+  description?: string;
+  coverImage?: SanityImage;
+  pdfUrl?: string;
+  active?: boolean;
+  order?: number;
+}
 export interface Product {
   _id: string;
   name: string;

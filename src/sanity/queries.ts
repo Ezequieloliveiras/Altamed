@@ -9,3 +9,14 @@ export const featuredProductsQuery = `*[_type == "product" && ativo == true && d
 export const productBySlugQuery = `*[_type == "product" && ativo == true && slug.current == $slug][0] {${productFields}}`;
 export const categoriesQuery = `*[_type == "category"] | order(nome asc) {_id, "name": nome, "slug": slug.current, "description": descricao}`;
 export const productsByCategoryQuery = `*[_type == "product" && ativo == true && categoria->slug.current == $slug] | order(ordem asc, nome asc) {${productFields}}`;
+export const activeTechnicalCatalogsQuery = `*[_type == "technicalCatalog" && ativo == true] | order(coalesce(ordem, 999999) asc, titulo asc) {
+  _id,
+  "title": titulo,
+  "slug": slug.current,
+  "specialty": especialidade,
+  "description": descricao,
+  "coverImage": capa{asset, alt},
+  "pdfUrl": arquivoPdf.asset->url,
+  "active": ativo,
+  "order": ordem
+}`;
