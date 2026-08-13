@@ -7,7 +7,7 @@ export function ProductCard({ product }: { product: Product }) {
   let src: string | undefined;
   try {
     src = image?.asset
-      ? urlFor(image).width(640).height(450).fit("max").url()
+      ? urlFor(image).width(640).fit("max").url()
       : undefined;
   } catch {
     /* placeholder */
@@ -22,6 +22,11 @@ export function ProductCard({ product }: { product: Product }) {
               alt={image?.alt?.trim() || product.name || "Imagem do produto"}
               fill
               sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
+              style={{
+                objectFit: "contain",
+                objectPosition: "center",
+                padding: "20px",
+              }}
             />
           ) : (
             <span>Imagem indisponível</span>

@@ -7,12 +7,16 @@ import { CategoryFilter } from "./CategoryFilter";
 export function Catalogue({
   products,
   categories,
+  initialCategory,
 }: {
   products: Product[];
   categories: Category[];
+  initialCategory: string;
 }) {
   const [term, setTerm] = useState("");
-  const [category, setCategory] = useState("");
+  const [category, setCategory] = useState(() =>
+    categories.some((item) => item.slug === initialCategory) ? initialCategory : "",
+  );
   const filtered = useMemo(
     () =>
       products.filter((p) => {
