@@ -38,6 +38,19 @@ img {
 main {
   flex: 1 0 auto;
 }
+.studio-body {
+  display: block;
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow: hidden;
+  background: #101112;
+}
+.studio-root {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+}
 .header,
 .footer {
   flex: 0 0 auto;
