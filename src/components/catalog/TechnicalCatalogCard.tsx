@@ -38,18 +38,6 @@ export function TechnicalCatalogCard({
         <p className="eyebrow">{catalog.specialty}</p>
         <h3>{catalog.title}</h3>
         {catalog.description ? <p>{catalog.description}</p> : null}
-        {catalog.pdfUrl ? (
-          <a
-            className="text-link"
-            href={catalog.pdfUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Visualizar catálogo <span>→</span>
-          </a>
-        ) : (
-          <span className="technical-card-unavailable">PDF indisponível</span>
-        )}
       </div>
     </article>
   );

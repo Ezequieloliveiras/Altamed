@@ -1,10 +1,18 @@
+import Image from "next/image";
 import Link from "next/link";
 export function Footer() {
   return (
     <footer className="footer">
       <div className="container footer-content">
         <div className="footer-brand">
-          <strong>ALTAMED</strong>
+          <Link className="footer-logo" href="/" aria-label="Altamed — página inicial">
+            <Image
+              src="/images/logoaltamed.svg"
+              alt="Altamed — Produtos cirúrgicos e hospitalares"
+              width={205}
+              height={49}
+            />
+          </Link>
           <p>Soluções e materiais para o ambiente cirúrgico.</p>
         </div>
         <div className="footer-links">

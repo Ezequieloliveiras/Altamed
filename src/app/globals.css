@@ -671,6 +671,7 @@ h1 {
   gap: 24px;
 }
 .technical-card {
+  cursor: pointer;
   min-width: 0;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -1731,9 +1732,17 @@ dd {
   font-size: 15px;
   letter-spacing: 0.04em;
 }
-.footer-brand strong {
-  font-size: 20px;
-  letter-spacing: 0.1em;
+.footer-logo {
+  display: inline-flex;
+  width: 205px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  background: #fff;
+}
+.footer-logo img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 .footer p {
   max-width: 280px;
