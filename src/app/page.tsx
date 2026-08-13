@@ -3,14 +3,17 @@ import { ProductGrid } from "@/components/ProductGrid";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { InstitutionalHighlights } from "@/components/InstitutionalHighlights";
 import { Reveal } from "@/components/Reveal";
-import { getCategories, getFeaturedProducts } from "@/sanity/fetch";
+import { SupplierCarousel } from "@/components/SupplierCarousel";
+import { getCategories, getFeaturedProducts, getSuppliers } from "@/sanity/fetch";
 
 export const revalidate = 60;
 export default async function Home() {
-  const [featured, categories] = await Promise.all([
+  const [featured, categories, suppliers] = await Promise.all([
     getFeaturedProducts(),
     getCategories(),
+    getSuppliers(),
   ]);
+  const suppliersWithLogos = suppliers?.filter((supplier) => supplier.logo?.asset) ?? [];
   return (
     <>
       <section className="hero">
@@ -81,6 +84,20 @@ export default async function Home() {
           )}
         </div>
       </section>
+      {suppliersWithLogos.length ? (
+        <section className="suppliers-section" aria-labelledby="suppliers-title">
+          <div className="container">
+            <Reveal className="suppliers-heading">
+              <p className="eyebrow">Nossos Parceiros</p>
+              <h2 id="suppliers-title">Marcas que fazem parte do nosso portfólio</h2>
+              {/* <p>
+                Soluções de fabricantes selecionados para diferentes necessidades do ambiente cirúrgico.
+              </p> */}
+            </Reveal>
+            <SupplierCarousel suppliers={suppliersWithLogos} />
+          </div>
+        </section>
+      ) : null}
       <InstitutionalHighlights />
       <section className="section container institutional about-section">
         <Reveal>

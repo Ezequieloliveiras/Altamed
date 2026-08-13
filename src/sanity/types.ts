@@ -38,3 +38,12 @@ export interface Product {
   order?: number;
   category?: Category;
 }
+export interface Supplier {
+  _id: string;
+  name: string;
+  logo?: SanityImage;
+  alt?: string;
+  url?: string;
+  order?: number;
+  active?: boolean;
+}
