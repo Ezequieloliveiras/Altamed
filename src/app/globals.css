@@ -1845,10 +1845,17 @@ dd {
 @media (max-width: 760px) {
   .container { width: min(100% - 40px, 1200px); }
   .nav { min-height: 76px; }
-  .brand { width: 184px; }
+  .brand { width: 250px; }
   .nav nav { gap: 16px; }
   .header-inner {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+  }
+  .header-inner .brand,
+  .header-inner .navigation {
+    align-self: center;
   }
   .header-cta { display: none; }
   .hero { min-height: 630px; }
