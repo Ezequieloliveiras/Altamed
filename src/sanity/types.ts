@@ -23,6 +23,20 @@ export interface TechnicalCatalog {
   active?: boolean;
   order?: number;
 }
+export interface HomeHeroSlide {
+  _id: string;
+  title: string;
+  eyebrow?: string;
+  description?: string;
+  desktopImage?: SanityImage;
+  mobileImage?: SanityImage;
+  primaryButtonLabel?: string;
+  primaryButtonHref?: string;
+  secondaryButtonLabel?: string;
+  secondaryButtonHref?: string;
+  active?: boolean;
+  order?: number;
+}
 export interface InstitutionalDocument {
   _id: string;
   title: string;

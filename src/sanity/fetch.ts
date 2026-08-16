@@ -1,5 +1,6 @@
 import { client, isSanityConfigured } from "./client";
 import {
+  activeHomeHeroSlidesQuery,
   activeInstitutionalDocumentsQuery,
   activeProductsQuery,
   activeSuppliersQuery,
@@ -10,6 +11,7 @@ import {
 } from "./queries";
 import type {
   Category,
+  HomeHeroSlide,
   InstitutionalDocument,
   Product,
   Supplier,
@@ -30,6 +32,8 @@ export const getProducts = () => safelyFetch<Product[]>(activeProductsQuery);
 export const getFeaturedProducts = () =>
   safelyFetch<Product[]>(featuredProductsQuery);
 export const getCategories = () => safelyFetch<Category[]>(categoriesQuery);
+export const getHomeHeroSlides = () =>
+  safelyFetch<HomeHeroSlide[]>(activeHomeHeroSlidesQuery);
 export const getSuppliers = () => safelyFetch<Supplier[]>(activeSuppliersQuery);
 export const getProductBySlug = (slug: string) =>
   safelyFetch<Product>(productBySlugQuery, { slug });

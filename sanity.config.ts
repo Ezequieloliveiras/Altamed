@@ -19,6 +19,7 @@ export default defineConfig({
         S.list()
           .title("Conteúdo")
           .items([
+            S.documentTypeListItem("homeHeroSlide").title("Banners da Home"),
             S.documentTypeListItem("product").title("Produtos"),
             S.documentTypeListItem("category").title("Categorias"),
             S.documentTypeListItem("supplier").title("Fornecedores"),

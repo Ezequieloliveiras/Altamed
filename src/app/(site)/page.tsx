@@ -1,14 +1,21 @@
 import Link from "next/link";
+import { HomeHeroCarousel } from "@/components/HomeHeroCarousel";
 import { ProductGrid } from "@/components/ProductGrid";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { InstitutionalHighlights } from "@/components/InstitutionalHighlights";
 import { Reveal } from "@/components/Reveal";
 import { SupplierCarousel } from "@/components/SupplierCarousel";
-import { getCategories, getFeaturedProducts, getSuppliers } from "@/sanity/fetch";
+import {
+  getCategories,
+  getFeaturedProducts,
+  getHomeHeroSlides,
+  getSuppliers,
+} from "@/sanity/fetch";
 
 export const revalidate = 60;
 export default async function Home() {
-  const [featured, categories, suppliers] = await Promise.all([
+  const [heroSlides, featured, categories, suppliers] = await Promise.all([
+    getHomeHeroSlides(),
     getFeaturedProducts(),
     getCategories(),
     getSuppliers(),
@@ -16,30 +23,7 @@ export default async function Home() {
   const suppliersWithLogos = suppliers?.filter((supplier) => supplier.logo?.asset) ?? [];
   return (
     <>
-      <section className="hero">
-        <div className="container hero-content">
-          <p className="eyebrow">Precisão que cuida</p>
-          <h1>
-            Tecnologia e precisão
-            <br />
-            para o ambiente
-            <br />
-            cirúrgico
-          </h1>
-          <p>
-            Soluções e equipamentos selecionados para oferecer qualidade,
-            segurança e eficiência aos profissionais da saúde.
-          </p>
-          <div className="hero-actions">
-            <Link className="button" href="/produtos">
-              Conheça nossos produtos
-            </Link>
-            <Link className="button button-outline" href="/contato">
-              Fale conosco
-            </Link>
-          </div>
-        </div>
-      </section>
+      <HomeHeroCarousel slides={heroSlides || []} />
       <section className="section container categories-section">
         <Reveal className="section-heading">
           <p className="eyebrow">Encontre por área</p>
