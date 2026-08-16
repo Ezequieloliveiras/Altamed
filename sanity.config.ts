@@ -22,6 +22,9 @@ export default defineConfig({
             S.documentTypeListItem("product").title("Produtos"),
             S.documentTypeListItem("category").title("Categorias"),
             S.documentTypeListItem("supplier").title("Fornecedores"),
+            S.documentTypeListItem("institutionalDocument").title(
+              "Licenças e Certificações",
+            ),
             S.documentTypeListItem("technicalCatalog").title(
               "Catálogos Técnicos",
             ),

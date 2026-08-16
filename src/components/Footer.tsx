@@ -19,6 +19,7 @@ export function Footer() {
           <strong>Navegação</strong>
           <Link href="/produtos">Produtos</Link>
           <Link href="/sobre">Sobre</Link>
+          <Link href="/licencas-e-certificacoes">Licenças e Certificações</Link>
           <Link href="/contato">Contato</Link>
         </div>
         <div className="footer-links">

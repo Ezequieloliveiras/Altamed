@@ -23,6 +23,18 @@ export interface TechnicalCatalog {
   active?: boolean;
   order?: number;
 }
+export interface InstitutionalDocument {
+  _id: string;
+  title: string;
+  acronym?: string;
+  category: string;
+  description?: string;
+  updatedAt?: string;
+  pdfUrl?: string;
+  pdfOriginalFilename?: string;
+  active?: boolean;
+  order?: number;
+}
 export interface Product {
   _id: string;
   name: string;

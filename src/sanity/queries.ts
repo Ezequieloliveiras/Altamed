@@ -29,3 +29,15 @@ export const activeTechnicalCatalogsQuery = `*[_type == "technicalCatalog" && at
   "active": ativo,
   "order": ordem
 }`;
+export const activeInstitutionalDocumentsQuery = `*[_type == "institutionalDocument" && ativo == true] | order(coalesce(ordem, 999999) asc, titulo asc) {
+  _id,
+  "title": titulo,
+  "acronym": sigla,
+  "category": categoria,
+  "description": descricao,
+  "updatedAt": dataAtualizacao,
+  "pdfUrl": arquivoPdf.asset->url,
+  "pdfOriginalFilename": arquivoPdf.asset->originalFilename,
+  "active": ativo,
+  "order": ordem
+}`;
