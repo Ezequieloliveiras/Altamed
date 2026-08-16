@@ -16,6 +16,7 @@ const navItems = [
 export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
 
   useEffect(() => {
     const updateHeader = () => setScrolled(window.scrollY > 8);
@@ -23,6 +24,10 @@ export function Header() {
     window.addEventListener("scroll", updateHeader, { passive: true });
     return () => window.removeEventListener("scroll", updateHeader);
   }, []);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
 
   return (
     <header className={`header ${scrolled ? "header-scrolled" : ""}`}>
@@ -36,7 +41,23 @@ export function Header() {
             priority
           />
         </Link>
-        <nav className="navigation" aria-label="Navegação principal">
+        <button
+          className="menu-toggle"
+          type="button"
+          aria-label={menuOpen ? "Fechar menu" : "Abrir menu"}
+          aria-controls="primary-navigation"
+          aria-expanded={menuOpen}
+          onClick={() => setMenuOpen((open) => !open)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+        <nav
+          className={`navigation ${menuOpen ? "navigation-open" : ""}`}
+          id="primary-navigation"
+          aria-label="Navegação principal"
+        >
           {navItems.map((item) => {
             const active =
               item.href === "/"
@@ -48,6 +69,7 @@ export function Header() {
                 aria-current={active ? "page" : undefined}
                 href={item.href}
                 key={item.href}
+                onClick={() => setMenuOpen(false)}
               >
                 {item.label}
               </Link>

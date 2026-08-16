@@ -36,6 +36,8 @@ export const homeHeroSlide = defineType({
     defineField({
       name: "imagemDesktop",
       title: "Imagem desktop",
+      description:
+        "Tamanho recomendado: 2200 x 820 px. A imagem preenche toda a largura do carousel e pode sofrer corte lateral em telas menores; mantenha o assunto principal mais ao centro/direita e evite texto embutido na arte.",
       type: "image",
       group: "media",
       options: { hotspot: true },
@@ -52,7 +54,7 @@ export const homeHeroSlide = defineType({
       name: "imagemMobile",
       title: "Imagem mobile",
       description:
-        "Opcional. Se não for preenchida, o site usa a imagem desktop.",
+        "Opcional. Tamanho recomendado: 900 x 1350 px. Se nao for preenchida, o site usa a imagem desktop.",
       type: "image",
       group: "media",
       options: { hotspot: true },
