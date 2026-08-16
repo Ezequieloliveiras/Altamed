@@ -16,22 +16,31 @@ export default function Contact() {
         <p>
           <strong>Telefone</strong>
           <br />
-          (00) 0000-0000
+          <a href="tel:+5573999663801">(73) 99966-3801</a>
         </p>
         <p>
           <strong>WhatsApp</strong>
           <br />
-          (00) 00000-0000
+          <a href="https://wa.me/5527999967774">(27) 99996-7774</a>
         </p>
         <p>
           <strong>E-mail</strong>
           <br />
-          <a href="mailto:contato@altamed.com.br">contato@altamed.com.br</a>
+          <a href="mailto:hospitalaraltamed@gmail.com">
+            hospitalaraltamed@gmail.com
+          </a>
+        </p>
+        <p>
+          <strong>CNPJ</strong>
+          <br />
+          51.735.818/0001-93
         </p>
         <p>
           <strong>Endereço</strong>
           <br />
-          Consulte nossa equipe para atendimento em sua região.
+          Av. Presidente Getúlio Vargas, 4618, Sala 4
+          <br />
+          Santa Rita, Teixeira de Freitas – BA, CEP 45985-333
         </p>
         <WhatsAppButton label="Chamar no WhatsApp" />
       </address>

@@ -17,7 +17,7 @@ export function TechnicalCatalogCard({
     /* placeholder */
   }
 
-  return (
+  const content = (
     <article className="technical-card">
       <div className="technical-card-cover">
         {coverUrl ? (
@@ -40,5 +40,19 @@ export function TechnicalCatalogCard({
         {catalog.description ? <p>{catalog.description}</p> : null}
       </div>
     </article>
+  );
+
+  if (!catalog.pdfUrl) return content;
+
+  return (
+    <a
+      href={catalog.pdfUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={`Abrir PDF do catálogo ${catalog.title}`}
+      className="technical-card-link"
+    >
+      {content}
+    </a>
   );
 }

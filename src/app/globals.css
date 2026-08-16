@@ -698,6 +698,12 @@ h1 {
     box-shadow 0.25s ease,
     border-color 0.25s ease;
 }
+.technical-card-link {
+  display: block;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+}
 .technical-card:hover {
   border-color: #c8dce9;
   box-shadow: 0 12px 24px rgba(5, 47, 81, 0.08);
@@ -1439,7 +1445,7 @@ dd {
   min-height: 88px;
 }
 .brand {
-  width: 280px;
+  width: 300px;
 }
 .nav nav {
   gap: 30px;
@@ -1839,10 +1845,17 @@ dd {
 @media (max-width: 760px) {
   .container { width: min(100% - 40px, 1200px); }
   .nav { min-height: 76px; }
-  .brand { width: 184px; }
+  .brand { width: 250px; }
   .nav nav { gap: 16px; }
   .header-inner {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 18px;
+  }
+  .header-inner .brand,
+  .header-inner .navigation {
+    align-self: center;
   }
   .header-cta { display: none; }
   .hero { min-height: 630px; }
