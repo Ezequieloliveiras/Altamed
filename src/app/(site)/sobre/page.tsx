@@ -20,7 +20,7 @@ function getDifferentialIcon(title: string | undefined, index: number): LucideIc
 }
 export default async function About() {
   const content = await getAboutPage(); const data = { ...fallback, ...content }; const heroImage = imageUrl(content?.heroImage, 1400); const aboutImage = imageUrl(content?.aboutImage, 1200);
-  const gallery = (content?.gallery || []).flatMap((item) => { const src = imageUrl(item.image, 1400); return src ? [{ src, alt: item.image?.alt || item.title || "Imagem institucional da Altamed", title: item.title, description: item.description }] : []; });
+  const gallery = (content?.gallery || []).flatMap((item) => { const src = imageUrl(item.image, 1400); return src ? [{ id: item._key, src, alt: item.image?.alt || item.title || "Imagem institucional da Altamed", title: item.title, description: item.description }] : []; });
   const pillars = [["Missão", data.mission], ["Visão", data.vision], ["Valores", data.values]].filter(([, text]) => Boolean(text)); const differentials = (data.differentials || []).filter((item) => item.title); const areas = (data.areas || []).filter(Boolean); const stats = (content?.stats || []).filter((item) => item.value && item.label);
   return <>
     <section className={`about-hero ${heroImage ? "about-hero-with-image" : ""}`}><div className="container about-hero-grid"><div className="about-hero-copy"><p className="eyebrow">{data.eyebrow}</p><h1>{data.heroTitle}</h1><p>{data.heroDescription}</p></div>{heroImage && <div className="about-hero-media"><Image src={heroImage} alt={content?.heroImage?.alt || "Altamed"} fill priority sizes="(max-width: 800px) 100vw, 48vw" /></div>}</div></section>

@@ -29,6 +29,13 @@ export default defineConfig({
             S.documentTypeListItem("technicalCatalog").title(
               "Catálogos Técnicos",
             ),
+            S.listItem()
+              .title("Quem Somos")
+              .child(
+                S.document()
+                  .schemaType("aboutPage")
+                  .documentId("aboutPage"),
+              ),
           ]),
     }),
     visionTool(),
