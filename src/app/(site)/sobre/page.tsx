@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Handshake, Headset, ShieldCheck, type LucideIcon } from "lucide-react";
+import { AnimatedCounter } from "@/components/AnimatedCounter";
 import { AboutGallery } from "@/components/AboutGallery";
+import { Reveal } from "@/components/Reveal";
 import { getAboutPage } from "@/sanity/fetch";
 import { urlFor } from "@/sanity/image";
 import type { SanityImage } from "@/sanity/types";
@@ -103,7 +105,7 @@ export default async function About() {
   );
   const areas = (data.areas || []).filter((area) => area?.title);
   const stats = (content?.stats || []).filter(
-    (item) => item?.value && item?.label,
+    (item) => typeof item?.value === "number" && item?.title,
   );
   return (
     <>
@@ -111,13 +113,13 @@ export default async function About() {
         className={`about-hero ${heroImage ? "about-hero-with-image" : ""}`}
       >
         <div className="container about-hero-grid">
-          <div className="about-hero-copy">
+          <Reveal className="about-hero-copy">
             <p className="eyebrow">{data.eyebrow}</p>
             <h1>{data.heroTitle}</h1>
             <p>{data.heroDescription}</p>
-          </div>
+          </Reveal>
           {heroImage && (
-            <div className="about-hero-media">
+            <Reveal className="about-hero-media" delay={100}>
               <Image
                 src={heroImage}
                 alt={content?.heroImage?.alt || "Altamed"}
@@ -125,12 +127,12 @@ export default async function About() {
                 priority
                 sizes="(max-width: 800px) 100vw, 48vw"
               />
-            </div>
+            </Reveal>
           )}
         </div>
       </section>
       <section className="section">
-        <div
+        <Reveal
           className={`container about-intro ${aboutImage ? "about-intro-with-image" : ""}`}
         >
           {aboutImage && (
@@ -152,11 +154,11 @@ export default async function About() {
               ))}
             </div>
           </div>
-        </div>
+        </Reveal>
       </section>
       {pillars.length > 0 && (
         <section className="about-pillars">
-          <div className="container about-pillars-grid">
+          <Reveal className="container about-pillars-grid">
             {pillars.map(([title, text], index) => (
               <article key={title}>
                 <span>{String(index + 1).padStart(2, "0")}</span>
@@ -164,17 +166,17 @@ export default async function About() {
                 <p>{text}</p>
               </article>
             ))}
-          </div>
+          </Reveal>
         </section>
       )}
       {differentials.length > 0 && (
         <section className="section surface">
           <div className="container">
-            <div className="about-section-heading">
+            <Reveal className="about-section-heading">
               <p className="eyebrow">Diferenciais</p>
               <h2>O que nos diferencia</h2>
-            </div>
-            <div className="about-differentials">
+            </Reveal>
+            <Reveal className="about-differentials" delay={80}>
               {differentials.map((item, index) => {
                 const Icon = getDifferentialIcon(item.title, index);
                 return (
@@ -192,39 +194,48 @@ export default async function About() {
                   </article>
                 );
               })}
-            </div>
+            </Reveal>
           </div>
         </section>
       )}
       {gallery.length > 0 && (
         <section className="section">
           <div className="container">
-            <div className="about-gallery-heading">
+            <Reveal className="about-gallery-heading">
               <div>
                 <p className="eyebrow">Nossa estrutura</p>
                 <h2>Altamed em movimento</h2>
               </div>
               <p>Conheça um pouco mais da nossa rotina, equipe e atuação.</p>
-            </div>
-            <AboutGallery images={gallery} />
+            </Reveal>
+            <Reveal delay={100}>
+              <AboutGallery images={gallery} />
+            </Reveal>
           </div>
         </section>
       )}
       {stats.length > 0 && (
         <section className="about-stats">
-          <div className="container">
+          <Reveal className="container">
             {stats.map((stat) => (
-              <div key={stat._key || stat.label}>
-                <strong>{stat.value}</strong>
-                <span>{stat.label}</span>
+              <div key={stat._key || stat.title}>
+                <strong>
+                  <AnimatedCounter
+                    value={stat.value ?? 0}
+                    prefix={stat.prefix}
+                    suffix={stat.suffix}
+                  />
+                  {stat.title && ` ${stat.title}`}
+                </strong>
+                {stat.description && <span>{stat.description}</span>}
               </div>
             ))}
-          </div>
+          </Reveal>
         </section>
       )}
       {areas.length > 0 && (
         <section className="section">
-          <div className="container about-areas">
+          <Reveal className="container about-areas">
             <div>
               <p className="eyebrow">Área de atuação</p>
               <h2>Onde atuamos</h2>
@@ -238,11 +249,11 @@ export default async function About() {
                 <li key={`${area.title}-${index}`}>{area.title}</li>
               ))}
             </ul>
-          </div>
+          </Reveal>
         </section>
       )}
       <section className="about-cta">
-        <div className="container">
+        <Reveal className="container">
           <div>
             <p className="eyebrow">Vamos conversar</p>
             <h2>{data.ctaTitle}</h2>
@@ -251,7 +262,7 @@ export default async function About() {
           <Link className="button" href="/contato">
             {data.ctaButtonLabel}
           </Link>
-        </div>
+        </Reveal>
       </section>
     </>
   );

@@ -1676,7 +1676,14 @@ dd {
   font-size: clamp(30px, 3vw, 44px);
   letter-spacing: -0.04em;
 }
-.about-stats span {
+.about-stats strong .animated-counter,
+.about-stats strong .animated-counter > span[aria-hidden="true"] {
+  color: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+}
+.about-stats > .container > div > span {
   color: #587080;
   font-size: 14px;
 }

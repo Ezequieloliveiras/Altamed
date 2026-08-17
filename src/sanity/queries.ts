@@ -60,5 +60,5 @@ export const aboutPageQuery = `*[_type == "aboutPage"][0] {
   aboutTitle, aboutContent, aboutImage{asset, alt, crop, hotspot}, mission, vision, values,
   differentials[]{_key, title, description},
   "gallery": gallery[] | order(coalesce(order, 999999) asc){_key, image{asset, alt, crop, hotspot}, title, description, "order": order},
-  stats[]{_key, value, label}, areas[]{_key, title}, ctaTitle, ctaDescription, ctaButtonLabel
+  stats[]{_key, prefix, value, suffix, title, description}, areas[]{_key, title}, ctaTitle, ctaDescription, ctaButtonLabel
 }`;

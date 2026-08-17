@@ -33,7 +33,14 @@ export interface AboutPage {
   values?: string;
   differentials?: { _key?: string; title?: string; description?: string }[];
   gallery?: AboutGalleryItem[];
-  stats?: { _key?: string; value?: string; label?: string }[];
+  stats?: {
+    _key?: string;
+    prefix?: string;
+    value?: number;
+    suffix?: string;
+    title?: string;
+    description?: string;
+  }[];
   areas?: { _key?: string; title?: string }[];
   ctaTitle?: string;
   ctaDescription?: string;
