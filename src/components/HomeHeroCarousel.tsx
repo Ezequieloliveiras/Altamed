@@ -27,7 +27,12 @@ function getImageUrl(image?: SanityImage, width = 2200) {
   if (!image?.asset) return null;
 
   try {
-    return urlFor(image).width(width).quality(82).fit("crop").auto("format").url();
+    return urlFor(image)
+      .width(width)
+      .quality(82)
+      .fit("crop")
+      .auto("format")
+      .url();
   } catch {
     return null;
   }
@@ -48,7 +53,12 @@ function HeroAction({
 
   if (isExternalHref(href)) {
     return (
-      <a className={className} href={href} target="_blank" rel="noopener noreferrer">
+      <a
+        className={className}
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
         {label}
       </a>
     );
@@ -166,7 +176,11 @@ export function HomeHeroCarousel({ slides }: { slides: HomeHeroSlide[] }) {
               key={slide._id}
             >
               {hasSanitySlides ? (
-                <HeroImage slide={slide} active={active} priority={index === 0} />
+                <HeroImage
+                  slide={slide}
+                  active={active}
+                  priority={index === 0}
+                />
               ) : null}
             </div>
           );
@@ -183,8 +197,14 @@ export function HomeHeroCarousel({ slides }: { slides: HomeHeroSlide[] }) {
               aria-hidden={!active}
               key={`${slide._id}-copy`}
             >
-              {slide.eyebrow ? <p className="eyebrow">{slide.eyebrow}</p> : null}
-              {index === activeIndex ? <h1>{slide.title}</h1> : <h2>{slide.title}</h2>}
+              {slide.eyebrow ? (
+                <p className="eyebrow">{slide.eyebrow}</p>
+              ) : null}
+              {index === activeIndex ? (
+                <h1>{slide.title}</h1>
+              ) : (
+                <h2>{slide.title}</h2>
+              )}
               {slide.description ? <p>{slide.description}</p> : null}
               {(slide.primaryButtonHref && slide.primaryButtonLabel) ||
               (slide.secondaryButtonHref && slide.secondaryButtonLabel) ? (

@@ -67,7 +67,8 @@ export const institutionalDocument = defineType({
     defineField({
       name: "ativo",
       title: "Exibir documento no site",
-      description: "Desative esta opção para ocultar temporariamente o documento.",
+      description:
+        "Desative esta opção para ocultar temporariamente o documento.",
       type: "boolean",
       group: "visibility",
       initialValue: true,

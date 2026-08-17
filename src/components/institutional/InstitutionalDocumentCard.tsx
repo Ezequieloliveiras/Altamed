@@ -96,7 +96,10 @@ export function InstitutionalDocumentCard({
       </div>
 
       {document.pdfUrl ? (
-        <div className="license-actions" aria-label={`Ações para ${document.title}`}>
+        <div
+          className="license-actions"
+          aria-label={`Ações para ${document.title}`}
+        >
           <a
             className="license-action license-action-secondary"
             href={document.pdfUrl}

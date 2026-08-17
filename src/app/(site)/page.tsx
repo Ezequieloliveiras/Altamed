@@ -20,7 +20,8 @@ export default async function Home() {
     getCategories(),
     getSuppliers(),
   ]);
-  const suppliersWithLogos = suppliers?.filter((supplier) => supplier.logo?.asset) ?? [];
+  const suppliersWithLogos =
+    suppliers?.filter((supplier) => supplier.logo?.asset) ?? [];
   return (
     <>
       <HomeHeroCarousel slides={heroSlides || []} />
@@ -69,11 +70,16 @@ export default async function Home() {
         </div>
       </section>
       {suppliersWithLogos.length ? (
-        <section className="suppliers-section" aria-labelledby="suppliers-title">
+        <section
+          className="suppliers-section"
+          aria-labelledby="suppliers-title"
+        >
           <div className="container">
             <Reveal className="suppliers-heading">
               <p className="eyebrow">Nossos Parceiros</p>
-              <h2 id="suppliers-title">Marcas que fazem parte do nosso portfólio</h2>
+              <h2 id="suppliers-title">
+                Marcas que fazem parte do nosso portfólio
+              </h2>
               {/* <p>
                 Soluções de fabricantes selecionados para diferentes necessidades do ambiente cirúrgico.
               </p> */}
@@ -104,8 +110,8 @@ export default async function Home() {
           <div>
             <h2>Precisa de orientação para escolher um produto?</h2>
             <p>
-              Nossa equipe está pronta para entender sua necessidade e indicar
-              a solução mais adequada.
+              Nossa equipe está pronta para entender sua necessidade e indicar a
+              solução mais adequada.
             </p>
           </div>
           <WhatsAppButton label="Falar com um especialista" />

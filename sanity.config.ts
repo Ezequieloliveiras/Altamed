@@ -32,9 +32,7 @@ export default defineConfig({
             S.listItem()
               .title("Quem Somos")
               .child(
-                S.document()
-                  .schemaType("aboutPage")
-                  .documentId("aboutPage"),
+                S.document().schemaType("aboutPage").documentId("aboutPage"),
               ),
           ]),
     }),

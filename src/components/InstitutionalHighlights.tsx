@@ -36,7 +36,9 @@ export function InstitutionalHighlights() {
     let frame = 0;
     const updateParallax = () => {
       const bounds = section.getBoundingClientRect();
-      const progress = (window.innerHeight - bounds.top) / (window.innerHeight + bounds.height);
+      const progress =
+        (window.innerHeight - bounds.top) /
+        (window.innerHeight + bounds.height);
       const offset = Math.max(-40, Math.min(40, (progress - 0.5) * 80));
       section.style.setProperty("--parallax-y", `${offset.toFixed(1)}px`);
       frame = 0;

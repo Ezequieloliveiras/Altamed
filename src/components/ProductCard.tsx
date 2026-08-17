@@ -6,9 +6,7 @@ export function ProductCard({ product }: { product: Product }) {
   const image = product.images?.[0];
   let src: string | undefined;
   try {
-    src = image?.asset
-      ? urlFor(image).width(640).fit("max").url()
-      : undefined;
+    src = image?.asset ? urlFor(image).width(640).fit("max").url() : undefined;
   } catch {
     /* placeholder */
   }

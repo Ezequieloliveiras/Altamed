@@ -14,8 +14,12 @@ export function CategoryFilter({
 }) {
   const [open, setOpen] = useState(false);
   const fieldRef = useRef<HTMLDivElement>(null);
-  const options = [{ _id: "all", name: "Todas as categorias", slug: "" }, ...categories];
-  const selected = options.find((option) => option.slug === value) ?? options[0];
+  const options = [
+    { _id: "all", name: "Todas as categorias", slug: "" },
+    ...categories,
+  ];
+  const selected =
+    options.find((option) => option.slug === value) ?? options[0];
 
   useEffect(() => {
     const closeOnOutsideClick = (event: MouseEvent) => {
@@ -42,7 +46,11 @@ export function CategoryFilter({
         onClick={() => setOpen((current) => !current)}
         onKeyDown={(event) => {
           if (event.key === "Escape") setOpen(false);
-          if (event.key === "ArrowDown" || event.key === "Enter" || event.key === " ") {
+          if (
+            event.key === "ArrowDown" ||
+            event.key === "Enter" ||
+            event.key === " "
+          ) {
             event.preventDefault();
             setOpen(true);
           }
@@ -55,7 +63,12 @@ export function CategoryFilter({
         </svg>
       </button>
       {open && (
-        <div aria-labelledby="category-label" className="category-options" id="category-options" role="listbox">
+        <div
+          aria-labelledby="category-label"
+          className="category-options"
+          id="category-options"
+          role="listbox"
+        >
           {options.map((option) => (
             <button
               aria-selected={option.slug === value}

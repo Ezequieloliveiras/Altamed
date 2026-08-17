@@ -59,10 +59,16 @@ export function SupplierCarousel({ suppliers }: { suppliers: Supplier[] }) {
   if (!preparedSuppliers.length) return null;
 
   const repeatCount = Math.max(1, Math.ceil(6 / preparedSuppliers.length));
-  const loopSuppliers = Array.from({ length: repeatCount }, () => preparedSuppliers).flat();
+  const loopSuppliers = Array.from(
+    { length: repeatCount },
+    () => preparedSuppliers,
+  ).flat();
 
   return (
-    <div className="supplier-ticker" aria-label="Fornecedores e parceiros Altamed">
+    <div
+      className="supplier-ticker"
+      aria-label="Fornecedores e parceiros Altamed"
+    >
       <div className="supplier-track">
         <div className="supplier-track-group">
           {loopSuppliers.map((supplier, index) => (
@@ -75,7 +81,10 @@ export function SupplierCarousel({ suppliers }: { suppliers: Supplier[] }) {
         </div>
         <div className="supplier-track-group" aria-hidden="true">
           {loopSuppliers.map((supplier, index) => (
-            <SupplierLogo key={`${supplier._id}-duplicate-${index}`} supplier={supplier} />
+            <SupplierLogo
+              key={`${supplier._id}-duplicate-${index}`}
+              supplier={supplier}
+            />
           ))}
         </div>
       </div>

@@ -5,7 +5,11 @@ export function Footer() {
     <footer className="footer">
       <div className="container footer-content">
         <div className="footer-brand">
-          <Link className="footer-logo" href="/" aria-label="Altamed — página inicial">
+          <Link
+            className="footer-logo"
+            href="/"
+            aria-label="Altamed — página inicial"
+          >
             <Image
               src="/images/logoaltamed.svg"
               alt="Altamed — Produtos cirúrgicos e hospitalares"
@@ -29,7 +33,9 @@ export function Footer() {
         </div>
       </div>
       <div className="container copyright">
-        <span>© {new Date().getFullYear()} Altamed. Todos os direitos reservados.</span>
+        <span>
+          © {new Date().getFullYear()} Altamed. Todos os direitos reservados.
+        </span>
         <span>
           Desenvolvido por{" "}
           <a

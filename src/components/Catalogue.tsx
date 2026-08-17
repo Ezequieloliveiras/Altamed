@@ -15,7 +15,9 @@ export function Catalogue({
 }) {
   const [term, setTerm] = useState("");
   const [category, setCategory] = useState(() =>
-    categories.some((item) => item.slug === initialCategory) ? initialCategory : "",
+    categories.some((item) => item.slug === initialCategory)
+      ? initialCategory
+      : "",
   );
   const filtered = useMemo(
     () =>
@@ -49,7 +51,11 @@ export function Catalogue({
             : `${filtered.length} ${filtered.length === 1 ? "produto encontrado" : "produtos encontrados"}`}
         </p>
         {hasFilters && (
-          <button className="clear-filters" onClick={clearFilters} type="button">
+          <button
+            className="clear-filters"
+            onClick={clearFilters}
+            type="button"
+          >
             Limpar filtros
           </button>
         )}
