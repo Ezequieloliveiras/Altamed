@@ -12,6 +12,33 @@ export interface SanityImage {
   asset?: { _ref?: string; url?: string };
   alt?: string;
 }
+export interface AboutGalleryItem {
+  _key?: string;
+  image?: SanityImage;
+  title?: string;
+  description?: string;
+  order?: number;
+}
+export interface AboutPage {
+  title?: string;
+  eyebrow?: string;
+  heroTitle?: string;
+  heroDescription?: string;
+  heroImage?: SanityImage;
+  aboutTitle?: string;
+  aboutContent?: string;
+  aboutImage?: SanityImage;
+  mission?: string;
+  vision?: string;
+  values?: string;
+  differentials?: { _key?: string; title?: string; description?: string }[];
+  gallery?: AboutGalleryItem[];
+  stats?: { _key?: string; value?: string; label?: string }[];
+  areas?: string[];
+  ctaTitle?: string;
+  ctaDescription?: string;
+  ctaButtonLabel?: string;
+}
 export interface TechnicalCatalog {
   _id: string;
   title: string;

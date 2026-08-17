@@ -8,6 +8,7 @@ import {
   categoriesQuery,
   featuredProductsQuery,
   productBySlugQuery,
+  aboutPageQuery,
 } from "./queries";
 import type {
   Category,
@@ -16,6 +17,7 @@ import type {
   Product,
   Supplier,
   TechnicalCatalog,
+  AboutPage,
 } from "./types";
 async function safelyFetch<T>(
   query: string,
@@ -41,3 +43,4 @@ export const getTechnicalCatalogs = () =>
   safelyFetch<TechnicalCatalog[]>(activeTechnicalCatalogsQuery);
 export const getInstitutionalDocuments = () =>
   safelyFetch<InstitutionalDocument[]>(activeInstitutionalDocumentsQuery);
+export const getAboutPage = () => safelyFetch<AboutPage>(aboutPageQuery);

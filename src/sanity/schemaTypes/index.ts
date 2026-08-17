@@ -4,6 +4,7 @@ import { institutionalDocument } from "./institutionalDocument";
 import { product } from "./product";
 import { supplier } from "./supplier";
 import { technicalCatalog } from "./technicalCatalog";
+import { aboutPage } from "./aboutPage";
 
 export const schemaTypes = [
   product,
@@ -12,4 +13,5 @@ export const schemaTypes = [
   supplier,
   technicalCatalog,
   institutionalDocument,
+  aboutPage,
 ];

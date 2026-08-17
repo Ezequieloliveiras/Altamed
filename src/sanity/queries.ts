@@ -55,3 +55,10 @@ export const activeInstitutionalDocumentsQuery = `*[_type == "institutionalDocum
   "active": ativo,
   "order": ordem
 }`;
+export const aboutPageQuery = `*[_type == "aboutPage"][0] {
+  title, eyebrow, heroTitle, heroDescription, heroImage{asset, alt, crop, hotspot},
+  aboutTitle, aboutContent, aboutImage{asset, alt, crop, hotspot}, mission, vision, values,
+  differentials[]{_key, title, description},
+  "gallery": gallery[] | order(coalesce(order, 999999) asc){_key, image{asset, alt, crop, hotspot}, title, description, "order": order},
+  stats[]{_key, value, label}, areas, ctaTitle, ctaDescription, ctaButtonLabel
+}`;
