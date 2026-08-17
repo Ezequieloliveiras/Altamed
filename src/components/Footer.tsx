@@ -29,7 +29,17 @@ export function Footer() {
         </div>
       </div>
       <div className="container copyright">
-        © {new Date().getFullYear()} Altamed. Todos os direitos reservados.
+        <span>© {new Date().getFullYear()} Altamed. Todos os direitos reservados.</span>
+        <span>
+          Desenvolvido por{" "}
+          <a
+            href="https://www.fullsoftware.com.br"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Full Software
+          </a>
+        </span>
       </div>
     </footer>
   );

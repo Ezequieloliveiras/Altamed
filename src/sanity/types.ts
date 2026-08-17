@@ -34,7 +34,7 @@ export interface AboutPage {
   differentials?: { _key?: string; title?: string; description?: string }[];
   gallery?: AboutGalleryItem[];
   stats?: { _key?: string; value?: string; label?: string }[];
-  areas?: string[];
+  areas?: { _key?: string; title?: string }[];
   ctaTitle?: string;
   ctaDescription?: string;
   ctaButtonLabel?: string;
