@@ -1943,7 +1943,7 @@ dd {
   min-height: 88px;
 }
 .brand {
-  width: 300px;
+  width: 250px;
 }
 .nav nav {
   gap: 30px;
@@ -2379,7 +2379,7 @@ dd {
     min-height: 76px;
   }
   .brand {
-    width: min(250px, calc(100vw - 112px));
+    width: min(210px, calc(100vw - 112px));
   }
   .header-inner {
     display: grid;
@@ -2505,7 +2505,7 @@ dd {
     width: min(100% - 32px, 1200px);
   }
   .brand {
-    width: min(230px, calc(100vw - 100px));
+    width: min(210px, calc(100vw - 100px));
   }
   .hero {
     min-height: 590px;
