@@ -3,21 +3,61 @@ import { notFound } from "next/navigation";
 import { ProductGallery } from "@/components/ProductGallery";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { getProductBySlug } from "@/sanity/fetch";
+import { urlFor } from "@/sanity/image";
+import type { Product } from "@/sanity/types";
+
+const siteUrl = "https://www.altamedtecnologia.com.br";
+
 type Props = { params: Promise<{ slug: string }> };
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const product = await getProductBySlug((await params).slug);
-  return product
-    ? {
-        title: product.name,
-        description:
-          product.shortDescription || `Informações sobre ${product.name}`,
-        openGraph: {
-          title: `${product.name} | Altamed`,
-          description: product.shortDescription,
-        },
-      }
-    : { title: "Produto não encontrado" };
+
+function getOpenGraphImage(product: Product) {
+  const image = product.images?.find(
+    (item) => item.asset?._ref || item.asset?.url,
+  );
+
+  if (!image) return undefined;
+
+  try {
+    return urlFor(image)
+      .width(1200)
+      .height(630)
+      .fit("crop")
+      .auto("format")
+      .url();
+  } catch {
+    return undefined;
+  }
 }
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+  const product = await getProductBySlug(slug);
+
+  if (!product) return { title: "Produto não encontrado" };
+
+  const canonical = `${siteUrl}/produtos/${slug}`;
+  const description =
+    product.shortDescription || `Informações sobre ${product.name}`;
+  const openGraphImage = getOpenGraphImage(product);
+
+  return {
+    title: product.name,
+    description,
+    alternates: {
+      canonical,
+    },
+    openGraph: {
+      title: `${product.name} | Altamed`,
+      description,
+      url: canonical,
+      type: "website",
+      images: openGraphImage
+        ? [{ url: openGraphImage, alt: product.name }]
+        : undefined,
+    },
+  };
+}
+
 export default async function ProductPage({ params }: Props) {
   const product = await getProductBySlug((await params).slug);
   if (!product) notFound();
