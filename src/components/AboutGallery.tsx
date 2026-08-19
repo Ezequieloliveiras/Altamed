@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { createPortal } from "react-dom";
 import { useCallback, useEffect, useState } from "react";
 
 export interface GalleryImage {
@@ -64,67 +65,70 @@ export function AboutGallery({ images }: { images: GalleryImage[] }) {
           </button>
         ))}
       </div>
-      {active && activeIndex !== null && (
-        <div
-          className="gallery-lightbox"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Visualização ampliada da galeria"
-          onClick={close}
-        >
-          <button
-            className="lightbox-close"
-            type="button"
+      {active &&
+        activeIndex !== null &&
+        createPortal(
+          <div
+            className="gallery-lightbox"
+            role="dialog"
+            aria-modal="true"
+            aria-label="Visualização ampliada da galeria"
             onClick={close}
-            aria-label="Fechar galeria"
           >
-            ×
-          </button>
-          <button
-            className="lightbox-arrow lightbox-previous"
-            type="button"
-            onClick={(event) => {
-              event.stopPropagation();
-              previous();
-            }}
-            aria-label="Imagem anterior"
-          >
-            ‹
-          </button>
-          <figure
-            className="lightbox-figure"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="lightbox-image">
-              <Image
-                src={active.src}
-                alt={active.alt}
-                fill
-                sizes="90vw"
-                priority
-              />
-            </div>
-            <figcaption>
-              {active.title && <strong>{active.title}</strong>}
-              {active.description && <span>{active.description}</span>}
-              <small>
-                {activeIndex + 1} / {images.length}
-              </small>
-            </figcaption>
-          </figure>
-          <button
-            className="lightbox-arrow lightbox-next"
-            type="button"
-            onClick={(event) => {
-              event.stopPropagation();
-              next();
-            }}
-            aria-label="Próxima imagem"
-          >
-            ›
-          </button>
-        </div>
-      )}
+            <button
+              className="lightbox-close"
+              type="button"
+              onClick={close}
+              aria-label="Fechar galeria"
+            >
+              ×
+            </button>
+            <button
+              className="lightbox-arrow lightbox-previous"
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                previous();
+              }}
+              aria-label="Imagem anterior"
+            >
+              ‹
+            </button>
+            <figure
+              className="lightbox-figure"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="lightbox-image">
+                <Image
+                  src={active.src}
+                  alt={active.alt}
+                  fill
+                  sizes="90vw"
+                  priority
+                />
+              </div>
+              <figcaption>
+                {active.title && <strong>{active.title}</strong>}
+                {active.description && <span>{active.description}</span>}
+                <small>
+                  {activeIndex + 1} / {images.length}
+                </small>
+              </figcaption>
+            </figure>
+            <button
+              className="lightbox-arrow lightbox-next"
+              type="button"
+              onClick={(event) => {
+                event.stopPropagation();
+                next();
+              }}
+              aria-label="Próxima imagem"
+            >
+              ›
+            </button>
+          </div>,
+          document.body,
+        )}
     </>
   );
 }

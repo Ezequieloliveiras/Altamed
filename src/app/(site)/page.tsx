@@ -100,7 +100,7 @@ export default async function Home() {
             de hospitais, clínicas e profissionais, oferecendo atendimento
             próximo e soluções confiáveis.
           </p>
-          <Link className="text-link" href="/sobre">
+          <Link className="text-link" href="/quemsomos">
             Conheça nossa empresa <span>→</span>
           </Link>
         </Reveal>
