@@ -13,6 +13,10 @@ const manrope = Manrope({
 export const metadata: Metadata = {
   title: { default: "Altamed | Soluções Cirúrgicas", template: "%s | Altamed" },
   description: "Equipamentos, instrumentais e materiais para a área cirúrgica.",
+  icons: {
+    icon: "/images/favicon.ico",
+    shortcut: "/images/favicon.ico",
+  },
   openGraph: { type: "website", locale: "pt_BR", siteName: "Altamed" },
 };
 export default function RootLayout({

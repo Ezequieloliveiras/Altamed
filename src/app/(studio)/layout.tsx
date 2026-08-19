@@ -10,6 +10,10 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   title: "Studio | Altamed",
+  icons: {
+    icon: "/images/favicon.ico",
+    shortcut: "/images/favicon.ico",
+  },
   robots: { index: false, follow: false },
 };
 
