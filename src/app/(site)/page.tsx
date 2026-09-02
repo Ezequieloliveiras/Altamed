@@ -25,6 +25,22 @@ export default async function Home() {
   return (
     <>
       <HomeHeroCarousel slides={heroSlides || []} />
+      {suppliersWithLogos.length ? (
+        <section
+          className="suppliers-section"
+          aria-label="Nossos Parceiros"
+        >
+          <div className="container">
+            <Reveal className="suppliers-heading">
+              <p className="eyebrow">Nossos Parceiros</p>
+              {/* <p>
+                Soluções de fabricantes selecionados para diferentes necessidades do ambiente cirúrgico.
+              </p> */}
+            </Reveal>
+            <SupplierCarousel suppliers={suppliersWithLogos} />
+          </div>
+        </section>
+      ) : null}
       <section className="section container categories-section">
         <Reveal className="section-heading">
           <p className="eyebrow">Encontre por área</p>
@@ -69,25 +85,6 @@ export default async function Home() {
           )}
         </div>
       </section>
-      {suppliersWithLogos.length ? (
-        <section
-          className="suppliers-section"
-          aria-labelledby="suppliers-title"
-        >
-          <div className="container">
-            <Reveal className="suppliers-heading">
-              <p className="eyebrow">Nossos Parceiros</p>
-              <h2 id="suppliers-title">
-                Marcas que fazem parte do nosso portfólio
-              </h2>
-              {/* <p>
-                Soluções de fabricantes selecionados para diferentes necessidades do ambiente cirúrgico.
-              </p> */}
-            </Reveal>
-            <SupplierCarousel suppliers={suppliersWithLogos} />
-          </div>
-        </section>
-      ) : null}
       <InstitutionalHighlights />
       <section className="section container institutional about-section">
         <Reveal>

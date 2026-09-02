@@ -6,29 +6,31 @@ type SupplierWithSource = Supplier & { src: string };
 
 function SupplierLogo({
   supplier,
-  interactive = false,
+  accessible = true,
 }: {
   supplier: SupplierWithSource;
-  interactive?: boolean;
+  accessible?: boolean;
 }) {
+  const supplierUrl = supplier.url?.trim();
   const logo = (
     <Image
       src={supplier.src}
-      alt={interactive ? supplier.alt?.trim() || supplier.name : ""}
+      alt={accessible ? supplier.alt?.trim() || supplier.name : ""}
       width={400}
       height={160}
       sizes="(max-width: 760px) 150px, 200px"
     />
   );
 
-  if (interactive && supplier.url) {
+  if (supplierUrl) {
     return (
       <a
         className="supplier-logo"
-        href={supplier.url}
+        href={supplierUrl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label={`Visitar site da ${supplier.name}`}
+        aria-label={accessible ? `Visitar site da ${supplier.name}` : undefined}
+        tabIndex={accessible ? undefined : -1}
       >
         {logo}
       </a>
@@ -75,7 +77,7 @@ export function SupplierCarousel({ suppliers }: { suppliers: Supplier[] }) {
             <SupplierLogo
               key={`${supplier._id}-primary-${index}`}
               supplier={supplier}
-              interactive={index < preparedSuppliers.length}
+              accessible={index < preparedSuppliers.length}
             />
           ))}
         </div>
@@ -84,6 +86,7 @@ export function SupplierCarousel({ suppliers }: { suppliers: Supplier[] }) {
             <SupplierLogo
               key={`${supplier._id}-duplicate-${index}`}
               supplier={supplier}
+              accessible={false}
             />
           ))}
         </div>
