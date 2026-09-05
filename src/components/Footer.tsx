@@ -22,6 +22,7 @@ export function Footer() {
         <div className="footer-links">
           <strong>Navegação</strong>
           <Link href="/produtos">Produtos</Link>
+          <Link href="/servicos">Serviços médicos</Link>
           <Link href="/quemsomos">Quem Somos</Link>
           <Link href="/licencas-e-certificacoes">Licenças e Certificações</Link>
           <Link href="/contato">Contato</Link>
