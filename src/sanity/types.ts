@@ -3,6 +3,7 @@ export interface Category {
   name: string;
   slug: string;
   description?: string;
+  image?: SanityImage;
 }
 export interface ProductSpecification {
   key: string;

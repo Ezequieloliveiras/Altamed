@@ -1,18 +1,32 @@
 import Link from "next/link";
+import Image from "next/image";
 import { HomeHeroCarousel } from "@/components/HomeHeroCarousel";
 import { ProductGrid } from "@/components/ProductGrid";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 import { InstitutionalHighlights } from "@/components/InstitutionalHighlights";
 import { Reveal } from "@/components/Reveal";
 import { SupplierCarousel } from "@/components/SupplierCarousel";
+import { urlFor } from "@/sanity/image";
 import {
   getCategories,
   getFeaturedProducts,
   getHomeHeroSlides,
   getSuppliers,
 } from "@/sanity/fetch";
+import type { SanityImage } from "@/sanity/types";
 
 export const revalidate = 60;
+
+function getCategoryImageUrl(image?: SanityImage) {
+  try {
+    return image?.asset
+      ? urlFor(image).width(720).height(420).fit("crop").url()
+      : undefined;
+  } catch {
+    return undefined;
+  }
+}
+
 export default async function Home() {
   const [heroSlides, featured, categories, suppliers] = await Promise.all([
     getHomeHeroSlides(),
@@ -26,10 +40,7 @@ export default async function Home() {
     <>
       <HomeHeroCarousel slides={heroSlides || []} />
       {suppliersWithLogos.length ? (
-        <section
-          className="suppliers-section"
-          aria-label="Nossos Parceiros"
-        >
+        <section className="suppliers-section" aria-label="Nossos Parceiros">
           <div className="container">
             <Reveal className="suppliers-heading">
               <p className="eyebrow">Nossos Parceiros</p>
@@ -52,14 +63,40 @@ export default async function Home() {
         </Reveal>
         <div className="categories">
           {categories?.length ? (
-            categories.map((category, index) => (
-              <Reveal key={category._id} delay={index * 80}>
-                <Link href={`/produtos?categoria=${category.slug}`}>
-                  <strong>{category.name}</strong>
-                  <span>{category.description || "Conheça os produtos"}</span>
-                </Link>
-              </Reveal>
-            ))
+            categories.map((category, index) => {
+              const imageUrl = getCategoryImageUrl(category.image);
+
+              return (
+                <Reveal key={category._id} delay={index * 80}>
+                  <Link
+                    className={`category-card ${
+                      imageUrl ? "category-card-has-image" : ""
+                    }`}
+                    href={`/produtos?categoria=${category.slug}`}
+                  >
+                    {imageUrl ? (
+                      <div className="category-card-media">
+                        <Image
+                          src={imageUrl}
+                          alt={
+                            category.image?.alt?.trim() ||
+                            `Imagem da especialidade ${category.name}`
+                          }
+                          fill
+                          sizes="(max-width: 760px) 92vw, (max-width: 1100px) 44vw, 33vw"
+                        />
+                      </div>
+                    ) : null}
+                    <div className="category-card-content">
+                      <strong>{category.name}</strong>
+                      <span>
+                        {category.description || "Conheça os produtos"}
+                      </span>
+                    </div>
+                  </Link>
+                </Reveal>
+              );
+            })
           ) : (
             <p className="empty">As categorias estarão disponíveis em breve.</p>
           )}

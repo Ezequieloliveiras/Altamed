@@ -23,5 +23,26 @@ export const category = defineType({
       type: "text",
       rows: 3,
     }),
+    defineField({
+      name: "imagem",
+      title: "Imagem do card",
+      description: "Imagem exibida no card da especialidade na página inicial.",
+      type: "image",
+      options: { hotspot: true },
+      fields: [
+        defineField({
+          name: "alt",
+          title: "Texto alternativo",
+          type: "string",
+        }),
+      ],
+    }),
   ],
+  preview: {
+    select: {
+      title: "nome",
+      subtitle: "descricao",
+      media: "imagem",
+    },
+  },
 });
